@@ -1,11 +1,12 @@
 package com.gxh.demo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
 public class Asset {
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer assetId;
 
     private String assetUuid;
@@ -29,5 +30,10 @@ public class Asset {
     private String assetPeople;
 
     private String assetQrcodeAddress;
+
+    private String assetOrigin;
+    private String assetYear;
+
+    private String test;
 
 }
