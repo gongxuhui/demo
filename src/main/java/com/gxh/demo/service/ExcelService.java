@@ -24,7 +24,7 @@ public class ExcelService {
      * @throws FileNotFoundException
      */
     public void getExcelData() throws Exception {
-       File file =  ResourceUtils.getFile("classpath:excel/(3)Thin Client.xlsx");
+       File file =  ResourceUtils.getFile("classpath:excel/Desktop.xlsx");
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(file);
         Sheet sheet = xssfWorkbook.getSheetAt(0);
         int lastRowNum = sheet.getLastRowNum();
@@ -103,7 +103,7 @@ public class ExcelService {
                 String comBrand = sheet.getRow(i).getCell(9).getStringCellValue();
                 String comModel = sheet.getRow(i).getCell(10).getStringCellValue();
                 asset.setAssetUuid(uuid);
-                asset.setAssetType("thinClient");
+                asset.setAssetType("cpu");
                 //0表示没有被使用
                 asset.setAssetStatus(0);
                 asset.setTaggerNumber(taggerNumber);
@@ -124,7 +124,7 @@ public class ExcelService {
                 String url = QrCodeUtil.BASE_URL+serialNumber;
                 String fileName = QrCodeUtil.createQrCode(url);
                 asset.setAssetQrcodeAddress(fileName);
-                asset.setTest("thinClient");
+                asset.setTest("cpu");
                 assetDao.insert(asset);
                 ll++;
                 System.out.println(ll+">>>"+uuid+">>>"+beijingCode +">>>"+financeCode +">>>"+taggerNumber +">>>"+serialNumber +">>>"+purchaseYear+">>>"+ department+">>>"+ companySource +">>>"+ assetOrigin+">>>"+ assetType +">>>"+comBrand+">>>"+ comModel);
