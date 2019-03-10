@@ -24,7 +24,7 @@ public class ExcelService {
      * @throws FileNotFoundException
      */
     public void getExcelData() throws Exception {
-       File file =  ResourceUtils.getFile("classpath:excel/Desktop.xlsx");
+       File file =  ResourceUtils.getFile("classpath:excel/(5)IP Phone.xlsx");
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(file);
         Sheet sheet = xssfWorkbook.getSheetAt(0);
         int lastRowNum = sheet.getLastRowNum();
@@ -44,7 +44,7 @@ public class ExcelService {
             }
             short shortColor = cell.getCellStyle().getFillForegroundColor();
             Color color = cell.getCellStyle().getFillForegroundColorColor();
-            //System.out.println(shortColor+"==========="+color);
+            System.out.println(shortColor+"==========="+color);
             if (shortColor == 0){
                 String uuid = UUID.randomUUID().toString().replaceAll("-", "");
                 if(sheet.getRow(i).getCell(0) == null){
@@ -103,7 +103,7 @@ public class ExcelService {
                 String comBrand = sheet.getRow(i).getCell(9).getStringCellValue();
                 String comModel = sheet.getRow(i).getCell(10).getStringCellValue();
                 asset.setAssetUuid(uuid);
-                asset.setAssetType("cpu");
+                asset.setAssetType("phone");
                 //0表示没有被使用
                 asset.setAssetStatus(0);
                 asset.setTaggerNumber(taggerNumber);
@@ -120,12 +120,12 @@ public class ExcelService {
                     asset.setAssetClass(0);
                 }
                 asset.setAssetYear(purchaseYear);
-                Thread.sleep(1000);
-                String url = QrCodeUtil.BASE_URL+serialNumber;
-                String fileName = QrCodeUtil.createQrCode(url);
-                asset.setAssetQrcodeAddress(fileName);
-                asset.setTest("cpu");
-                assetDao.insert(asset);
+                //Thread.sleep(1000);
+                //String url = QrCodeUtil.BASE_URL+serialNumber;
+                //String fileName = QrCodeUtil.createQrCode(url);
+                asset.setAssetQrcodeAddress("no");
+                asset.setTest("phone");
+//                assetDao.insert(asset);
                 ll++;
                 System.out.println(ll+">>>"+uuid+">>>"+beijingCode +">>>"+financeCode +">>>"+taggerNumber +">>>"+serialNumber +">>>"+purchaseYear+">>>"+ department+">>>"+ companySource +">>>"+ assetOrigin+">>>"+ assetType +">>>"+comBrand+">>>"+ comModel);
             }else {
